@@ -1,0 +1,5 @@
+<div class="card-grid">
+	{% for card in cards %}
+		{% include 'components/card.html.twig' with { card: card } %}
+	{% endfor %}
+</div>

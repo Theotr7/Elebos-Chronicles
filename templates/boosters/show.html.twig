@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ booster.boosterName }}
+{% endblock %}
+
+{% block body %}
+	<h1>{{ booster.boosterName }}</h1>
+
+	<div class="booster-wrapper">
+		{% include 'components/booster.html.twig' with {
+								booster: {
+									backgroundUrl: booster.backgroundUrl,
+									titleTop: 'Elebos Chronicles',
+									subtitleTop: 'The Card Game',
+									symbolUrl: booster.imageUrl,
+									titleBottom: booster.boosterName,
+									cardCount: booster.cardCount,
+									cardLabel: 'Cartes'
+								}
+							} %}
+	</div>
+
+	<hr>
+
+	{% if app.user %}
+		<form method="post" action="{{ path('booster_add', { id: booster.id }) }}">
+			<input type="hidden" name="_token" value="{{ csrf_token('add_booster_' ~ booster.id) }}">
+			<button type="submit" class="btn-primary">Ajouter à mes boosters</button>
+		</form>
+	{% else %}
+		<p>
+			<a href="{{ path('app_login') }}">Connecte-toi</a>
+			pour ajouter ce booster à ta collection.
+		</p>
+	{% endif %}
+
+	<p>
+		<a href="{{ path('booster_index') }}">← Retour à la liste des boosters</a>
+	</p>
+{% endblock %}

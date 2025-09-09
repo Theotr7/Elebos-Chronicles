@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration des Cartes
+{% endblock %}
+
+{% block body %}
+	<div class="admin-header">
+		<img src="{{ asset('icons/admin/admin.png') }}" alt="Admin" class="admin-icon">
+		<h1>Gestion des Cartes</h1>
+		<a href="{{ path('admin_card_new') }}" class="btn-primary">
+			Ajouter une carte
+		</a>
+	</div>
+
+	<div class="card-grid">
+		{% for card in cards %}
+			<div class="card-wrapper">
+				<div class="admin-actions">
+					<a href="{{ path('admin_card_edit', { id: card.id }) }}" title="Modifier">
+						<img src="{{ asset('icons/admin/plume.png') }}" alt="Modifier" class="admin-icon-card"/>
+					</a>
+
+					<form method="post" action="{{ path('admin_card_delete', { id: card.id }) }}" onsubmit="return confirm('Supprimer cette carte ?');">
+						<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ card.id) }}">
+						<button type="submit" title="Supprimer" class="btn-icon">
+							<img src="{{ asset('icons/admin/cross.png') }}" alt="Supprimer" class="admin-icon-card"/>
+						</button>
+					</form>
+				</div>
+				{% include 'components/card.html.twig' with { card: card } %}
+			</div>
+		{% else %}
+			<p>Aucune carte trouvée.</p>
+		{% endfor %}
+	</div>
+
+	<style>
+		.card-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+			gap: 1.5rem;
+			margin-top: 1rem;
+		}
+
+		.card-wrapper {
+			position: relative;
+			background: none; /* ✅ supprime le fond derrière la carte */
+			padding: 0; /* ✅ pas d'espace autour */
+			box-shadow: none; /* si tu as une ombre externe, retire-la ici aussi */
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+
+		.admin-actions {
+			margin-top: 0.5rem;
+			display: flex;
+			gap: 5rem;
+		}
+
+		.admin-icon-card {
+			width: 3rem;
+			height: 3rem;
+			cursor: pointer;
+			transition: transform 0.2s;
+		}
+
+		.admin-icon-card:hover {
+			transform: scale(1.2);
+		}
+
+		.btn-icon {
+			background: none;
+			border: none;
+			padding: 0;
+			cursor: pointer;
+		}
+
+		.admin-header {
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 2rem;
+			margin-top: 2rem;
+		}
+
+		.admin-header h1 {
+			font-family: "Cinzel", serif;
+			font-size: 2rem;
+			color: #c2a35e;
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			margin-bottom: 1rem;
+		}
+
+		.admin-icon {
+			width: 48px;
+			height: 48px;
+		}
+
+		.admin-btn {
+			background-color: #644d3c;
+			color: #fffaf0;
+			padding: 10px 18px;
+			font-family: "Cinzel", serif;
+			font-weight: bold;
+			border-radius: 6px;
+			text-decoration: none;
+			transition: background-color 0.2s ease;
+		}
+
+		.admin-btn:hover {
+			background-color: #4b392dff;
+		}
+	</style>
+{% endblock %}

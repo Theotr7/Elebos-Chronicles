@@ -1,0 +1,41 @@
+<article class="card {{ card.rarity|lower }}" {% if card.rarity == 'mythique' %} style="background-image: url('{{ asset(card.imageUrl) }}');" {% endif %}>
+	<header class="card-header">
+		<div class="stat">
+			<img src="{{ asset('icons/stats/Mana.png') }}" alt="Mana">
+			<span>{{ card.cost }}</span>
+		</div>
+		<div class="stat">
+			<img src="{{ asset('icons/stats/Hp.png') }}" alt="HP">
+			<span>{{ card.hp }}</span>
+		</div>
+	</header>
+
+	{% if card.rarity != 'mythique' %}
+		<figure class="card-image" style="background-image: url('{{ asset(card.imageUrl) }}');"></figure>
+	{% endif %}
+
+	<section class="card-content {% if card.rarity == 'mythique' %}overlay{% endif %}">
+		<h3 class="card-title">{{ card.name }}</h3>
+
+		<section class="ability">
+			<img src="{{ asset('icons/abilities/' ~ card.ability1Type ~ '.png') }}" alt="Ability Icon">
+			<span class="ability-name">{{ card.ability1Name }}</span>
+			<p class="ability-desc">{{ card.ability1Description }}</p>
+		</section>
+
+		{% if card.rarity != 'commune' %}
+			<section class="ability">
+				<img src="{{ asset('icons/abilities/' ~ card.ability2Type ~ '.png') }}" alt="Ability Icon">
+				<span class="ability-name">{{ card.ability2Name }}</span>
+				<p class="ability-desc">{{ card.ability2Description }}</p>
+			</section>
+		{% endif %}
+
+		<footer class="card-footer">
+			<p class="quote">“{{ card.quote }}”</p>
+			<div class="rarity-gem">
+				<img src="{{ asset('icons/gems/' ~ card.rarity|capitalize ~ '.png') }}">
+			</div>
+		</footer>
+	</section>
+</article>

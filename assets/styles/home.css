@@ -1,0 +1,192 @@
+/* ====================== */
+/* Section booster carrousel */
+/* ====================== */
+
+.booster-carousel-section {
+    text-align: center;
+    margin: 4rem auto;
+    max-width: 110rem;
+}
+
+.carousel-title {
+    font-size: 2.8rem;
+    margin: 2rem 0 3rem 0;
+    font-family: "Cinzel", serif;
+    color: #c2a35e;
+}
+
+/* Wrapper du carrousel */
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Conteneur limité */
+.carousel-container {
+    width: 100%;
+    max-width: 1000px;
+    overflow: hidden; /* cache les boosters hors champ */
+}
+
+/* Track = bande qui défile */
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 2rem;
+}
+
+/* Item booster */
+.carousel-item {
+    flex: 0 0 calc((100% - 4rem) / 3); /* 3 visibles */
+    max-width: calc((100% - 4rem) / 3);
+    box-sizing: border-box;
+}
+
+/* Boutons de navigation */
+.carousel-btn {
+    font-size: 2rem;
+    width: 48px;
+    height: 48px;
+    background-color: #e6c37a;
+    color: #1f1a13;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.carousel-btn:hover {
+    background-color: #d1ac60;
+    transform: scale(1.05);
+}
+
+/* Bouton sous le carrousel */
+.btn-see-all {
+    display: inline-block;
+    margin-top: 3rem;
+    padding: 0.8rem 1.6rem;
+    background-color: #644d3c;
+    color: #fff;
+    font-family: "Cinzel", serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.btn-see-all:hover {
+    background-color: #3e2c20;
+}
+
+/* ====================== */
+/* Section présentation */
+/* ====================== */
+
+.presentation-section {
+    background-color: #d9cbb6;
+    text-align: center;
+    margin: 6rem auto;
+    padding: 4rem 2rem;
+    max-width: 100rem;
+    border-top: 2px solid #e6c37a;
+    border-bottom: 2px solid #e6c37a;
+}
+
+.presentation-title {
+    font-size: 2.6rem;
+    margin-bottom: 1.5rem;
+    font-family: "Cinzel", serif;
+    color: #644d3c;
+}
+
+.presentation-text {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    font-family: "Merriweather", serif;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.btn-presentation {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #644d3c;
+    color: #fff;
+    font-family: "Cinzel", serif;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-presentation:hover {
+    background-color: #3e2c20;
+    transform: scale(1.05);
+}
+
+/* ====================== */
+/* Section cartes mythiques */
+/* ====================== */
+
+.mythic-section {
+    text-align: center;
+    margin: 6rem auto;
+    padding: 4rem 2rem;
+    max-width: 150rem;
+    background: #d9cbb6;
+    border-radius: 1rem;
+    border: 2px solid #e6c37a;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.mythic-title {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+    font-family: "Cinzel", serif;
+    color: #644d3c;
+}
+
+.mythic-subtitle {
+    font-size: 1.4rem;
+    font-style: italic;
+    font-family: "Merriweather", serif;
+    margin-bottom: 2.5rem;
+    color: #333;
+}
+
+.mythic-cards {
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.mythic-card {
+    flex: 0 0 auto;
+    max-width: 320px;
+    min-width: 300px; /* évite l’écrasement */
+}
+
+.btn-mythic {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #e6c37a;
+    color: #1f1a13;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+    font-family: "Cinzel", serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-mythic:hover {
+    background-color: #d1ac60;
+    transform: scale(1.05);
+}

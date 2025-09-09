@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma collection
+{% endblock %}
+
+{% block body %}
+	<h1>Ma collection</h1>
+
+	<div
+		class="filters-container">
+		{# 🔎 Recherche en direct #}
+		<input
+		type="text" id="live-search" placeholder="Rechercher une carte..." style="width: 100%; max-width: 300px;"/>
+
+		{# 🎯 Formulaire Symfony classique #}
+		{{ form_start(filterForm) }}
+		{{ form_row(filterForm.rarity) }}
+		{{ form_row(filterForm.cost) }}
+
+		<div class="form-actions">
+			<button type="submit" class="btn-primary">Filtrer</button>
+			<a href="{{ path('user_collection') }}" class="btn-reset">Réinitialiser</a>
+		</div>
+		{{ form_end(filterForm) }}
+	</div>
+
+
+	{# 📘 Grille façon cahier #}
+	<div class="book-layout">
+		<div class="page left-page" style="background-image: url('{{ asset('assets/textures/parchemin.png') }}');">
+			{% for card in allCards[:(allCards|length // 2)] %}
+				{% set cardId = card.id %}
+				{% set ownedCount = ownedCardsCount[cardId] ?? 0 %}
+				<div class="card-wrapper" style="{% if ownedCount == 0 %}opacity: 0.4;{% endif %}">
+					{% include 'components/card.html.twig' with { card: card } %}
+					{% if ownedCount > 1 %}
+						<div class="card-count">x{{ ownedCount }}</div>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="page right-page" style="background-image: url('{{ asset('assets/textures/parchemin.png') }}');">
+			{% for card in allCards[(allCards|length // 2):] %}
+				{% set cardId = card.id %}
+				{% set ownedCount = ownedCardsCount[cardId] ?? 0 %}
+				<div class="card-wrapper" style="{% if ownedCount == 0 %}opacity: 0.4;{% endif %}">
+					{% include 'components/card.html.twig' with { card: card } %}
+					{% if ownedCount > 1 %}
+						<div class="card-count">x{{ ownedCount }}</div>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+const searchInput = document.getElementById('live-search');
+const cards = document.querySelectorAll('.card-wrapper');
+
+searchInput.addEventListener('input', function () {
+const query = this.value.toLowerCase();
+
+cards.forEach(function (card) {
+const name = card.getAttribute('data-name');
+if (name.includes(query)) {
+card.style.display = 'block';
+} else {
+card.style.display = 'none';
+}
+});
+});
+});
+	</script>
+{% endblock %}

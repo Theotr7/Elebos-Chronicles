@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+	<section class="booster-carousel-section">
+		<h2 class="carousel-title">Découvrez les boosters</h2>
+
+		<div
+			class="carousel-wrapper">
+			<!-- Bouton gauche -->
+			<button class="carousel-btn left" onclick="scrollCarousel(-1)">‹</button>
+
+			<!-- Carrousel limité -->
+			<div class="carousel-container">
+				<div class="carousel-track" id="boosterCarousel">
+					{% for booster in boosters %}
+						<div class="carousel-item">
+							{% include 'components/booster.html.twig' with {
+								booster: {
+									backgroundUrl: booster.backgroundUrl,
+									titleTop: 'Elebos Chronicles',
+									subtitleTop: 'The Card Game',
+									symbolUrl: booster.imageUrl,
+									titleBottom: booster.boosterName,
+									cardCount: booster.cardCount,
+									cardLabel: 'Cartes'
+								}
+							} %}
+						</div>
+					{% else %}
+						<p>Aucun booster disponible.</p>
+					{% endfor %}
+				</div>
+			</div>
+
+			<!-- Bouton droit -->
+			<button class="carousel-btn right" onclick="scrollCarousel(1)">›</button>
+		</div>
+		<a href="{{ path('booster_index') }}" class="btn-primary">Voir tous les boosters</a>
+	</section>
+
+	<section class="presentation-section">
+		<h2 class="presentation-title">Entrez dans l’univers d’Elebos Chronicles</h2>
+		<p class="presentation-text">
+			Forgez votre destinée dans un monde de magie, de dragons et d’aventures. 
+			Collectionnez des cartes uniques, invoquez des créatures légendaires 
+			et découvrez les mystères d’Elebos.
+		</p>
+	</section>
+
+	<section class="mythic-section">
+		<h2 class="mythic-title">Les cartes mythiques du jour</h2>
+		<p class="mythic-subtitle">Tentez votre chance et rejoignez la bataille !</p>
+
+		<div class="mythic-cards">
+			{% for card in mythics %}
+				<div class="mythic-card">
+					{% include 'components/card.html.twig' with { card: card } %}
+				</div>
+			{% endfor %}
+		</div>
+
+		<a href="{{ path('booster_index') }}" class="btn-primary">Ouvrir des boosters</a>
+	</section>
+
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+		let scrollIndex = 0;
+const visibleItems = 3;
+
+function scrollCarousel(direction) {
+const track = document.getElementById('boosterCarousel');
+const items = track.querySelectorAll('.carousel-item');
+const itemWidth = items[0].offsetWidth + 32; // item width + gap
+const maxIndex = items.length;
+
+scrollIndex += direction;
+
+if (scrollIndex < 0) {
+scrollIndex = maxIndex - visibleItems;
+}
+if (scrollIndex > maxIndex - visibleItems) {
+scrollIndex = 0;
+}
+
+track.style.transform = `translateX(-${
+scrollIndex * itemWidth
+}px)`;
+}
+	</script>
+{% endblock %}

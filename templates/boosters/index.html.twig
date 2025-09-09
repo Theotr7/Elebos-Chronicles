@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les boosters
+{% endblock %}
+
+{% block body %}
+	<h1>Tous les boosters</h1>
+
+	<div class="booster-grid">
+		{% for booster in boosters %}
+			<div class="booster-wrapper">
+				<a href="{{ path('booster_show', { id: booster.id }) }}" class="booster-link">
+					{% include 'components/booster.html.twig' with {
+                        booster: {
+                            backgroundUrl: booster.backgroundUrl,
+                            titleTop: 'Elebos Chronicles',
+                            subtitleTop: 'The Card Game',
+                            symbolUrl: booster.imageUrl,
+                            titleBottom: booster.boosterName,
+                            cardCount: booster.cardCount,
+                            cardLabel: 'Cartes'
+                        }
+                    } %}
+				</a>
+
+				{# Ajouter à la collection (si connecté) #}
+				{% if app.user %}
+					<form method="post" action="{{ path('booster_add', { id: booster.id }) }}">
+						<input type="hidden" name="_token" value="{{ csrf_token('add_booster_' ~ booster.id) }}">
+						<button type="submit" class="btn-primary">Ajouter à mes boosters</button>
+					</form>
+				{% else %}
+					<p class="login-reminder">
+						<a href="{{ path('app_login') }}">Connecte-toi</a>
+						pour ajouter ce booster à ta collection.
+					</p>
+				{% endif %}
+			</div>
+		{% else %}
+			<p>Aucun booster trouvé.</p>
+		{% endfor %}
+	</div>
+
+	<style>
+		.booster-wrapper {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center; /* Pour centrer le bouton aussi */
+			gap: 0.5rem;
+		}
+
+		/* === BOUTON AJOUTER BOOSTER === */
+		.btn-add-booster {
+			display: inline-block;
+			margin-top: 0.8rem;
+			padding: 10px 18px;
+			font-family: "Cinzel", serif;
+			font-size: 1rem;
+			font-weight: bold;
+			color: #fffaf0;
+			background: linear-gradient(180deg, #7a4a26 0%, #4b2e19 100%);
+			border: 2px solid #c2a35e;
+			border-radius: 8px;
+			text-transform: uppercase;
+			cursor: pointer;
+			transition: all 0.2s ease-in-out;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+		}
+
+		.btn-add-booster:hover {
+			background: linear-gradient(180deg, #8c5c33 0%, #5e3b20 100%);
+			transform: translateY(-2px) scale(1.03);
+			box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5), inset 0 2px 6px rgba(255, 255, 255, 0.15);
+		}
+
+		.btn-add-booster:active {
+			transform: translateY(1px) scale(0.98);
+			background: linear-gradient(180deg, #5e3b20 0%, #3a2213 100%);
+			box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.6);
+		}
+
+		/* === MESSAGE POUR NON-CONNECTÉS === */
+		.login-reminder {
+			margin-top: 0.8rem;
+			font-family: "Cinzel", serif;
+			font-size: 0.95rem;
+			color: #4b2e19;
+			text-align: center;
+		}
+
+		.login-reminder a {
+			color: #7a4a26;
+			font-weight: bold;
+			text-decoration: underline;
+			transition: color 0.2s;
+		}
+
+		.login-reminder a:hover {
+			color: #c2a35e;
+		}
+	</style>
+{% endblock %}

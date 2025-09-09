@@ -1,0 +1,267 @@
+.card {
+    width: 300px;
+    height: 540px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-family: "Arial", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    background-color: white;
+    position: relative;
+    border: 2px solid transparent;
+}
+
+/* === HEADER STATS (mana + hp) === */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0.6rem;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.card-header .stat {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.card-header img {
+    width: 18px;
+    height: 18px;
+}
+
+/* === IMAGE (sauf mythique) === */
+.card-image {
+    height: 180px;
+    min-height: 140px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+/* === CONTENU TEXTE === */
+.card-content {
+    flex: 1;
+    padding: 0.5rem 0.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+/* === TITRE === */
+.card-title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 6px;
+    width: fit-content;
+    margin-top: 0.2rem;
+    margin-bottom: 0.8rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* === ABILITIES === */
+.ability {
+    margin: 0.1rem 0;
+}
+
+.ability img {
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.ability-name {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    font-size: 13px;
+}
+
+.ability-desc {
+    color: #3f3f3f;
+    font-family: "Merriweather", serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+/* === CITATION === */
+.quote {
+    font-style: italic;
+    font-size: 12px;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* === GEMME DE RARETÉ === */
+.rarity-gem {
+    text-align: center;
+    margin-top: 6px;
+}
+
+.rarity-gem img {
+    width: 25px;
+    height: 25px;
+}
+
+/* === COMPTE DE COPIES === */
+.card-wrapper {
+    position: relative;
+    width: 300px;
+}
+
+.card-count {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: green;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* ======================= */
+/* === STYLES PAR RARETÉ === */
+/* ======================= */
+
+/* === Commune === */
+.card.commune {
+    border-color: #aaa;
+    background-color: #f3f3f3;
+}
+
+.card.commune .ability:first-of-type {
+    margin-bottom: rem; /* ajuste cette valeur pour l’alignement parfait */
+}
+
+.card.commune .card-header {
+    background-color: #dcdcdc;
+    color: black;
+}
+
+.card.commune .card-title {
+    background-color: #dcdcdc;
+    color: black;
+}
+
+.card.commune .ability-name {
+    background-color: #dcdcdc;
+    color: black;
+}
+
+/* === Rare === */
+.card.rare {
+    border-color: #3498db;
+    background-color: #e4f1ff;
+}
+
+.card.rare .card-header {
+    background-color: #3498db;
+    color: white;
+}
+
+.card.rare .card-title {
+    background-color: #3498db;
+    color: white;
+}
+
+.card.rare .ability-name {
+    background-color: #3498db;
+    color: white;
+}
+
+/* === Légendaire === */
+.card.legendaire {
+    border-color: gold;
+    background-color: #fff6db;
+}
+
+.card.legendaire .card-header {
+    background-color: gold;
+    color: black;
+}
+
+.card.legendaire .card-title {
+    background-color: gold;
+    color: black;
+}
+
+.card.legendaire .ability-name {
+    background-color: gold;
+    color: black;
+}
+
+/* === NOUVELLE SECTION PIED DE CARTE (quote + gemme) === */
+.card-footer {
+    padding: 10px;
+    border-radius: 0 0 12px 12px;
+    margin: -6px -10px -10px -10px; /* compense le padding du .card-content */
+    text-align: center;
+}
+
+/* Par rareté */
+.card.commune .card-footer {
+    background-color: #dcdcdc;
+    color: black;
+}
+
+.card.rare .card-footer {
+    background-color: #3498db;
+    color: white;
+}
+
+.card.legendaire .card-footer {
+    background-color: gold;
+    color: black;
+}
+
+.card-footer .rarity-gem img {
+    width: 25px;
+    height: 25px;
+    margin-top: 6px;
+    margin-bottom: 4px;
+}
+
+.card.mythique {
+    border-color: purple;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    position: relative;
+}
+
+.card.mythique .card-title {
+    font-size: 1.3rem;
+}
+
+.card.mythique .ability {
+    margin-bottom: -6rem;
+}
+
+.card.mythique .card-title,
+.card.mythique .ability-name {
+    color: #b57eff;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}
+
+.card.mythique .card-header,
+.card.mythique .ability-desc,
+.card.mythique .quote {
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
