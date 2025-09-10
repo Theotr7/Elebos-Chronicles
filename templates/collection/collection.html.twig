@@ -19,7 +19,7 @@
 
 		<div class="form-actions">
 			<button type="submit" class="btn-primary">Filtrer</button>
-			<a href="{{ path('user_collection') }}" class="btn-reset">Réinitialiser</a>
+			<a href="{{ path('user_collection') }}" class="btn-primary">Réinitialiser</a>
 		</div>
 		{{ form_end(filterForm) }}
 	</div>
@@ -31,7 +31,7 @@
 			{% for card in allCards[:(allCards|length // 2)] %}
 				{% set cardId = card.id %}
 				{% set ownedCount = ownedCardsCount[cardId] ?? 0 %}
-				<div class="card-wrapper" style="{% if ownedCount == 0 %}opacity: 0.4;{% endif %}">
+				<div class="card-wrapper" data-name="{{ card.name|lower }}" style="{% if ownedCount == 0 %}opacity: 0.4;{% endif %}">
 					{% include 'components/card.html.twig' with { card: card } %}
 					{% if ownedCount > 1 %}
 						<div class="card-count">x{{ ownedCount }}</div>
@@ -44,7 +44,7 @@
 			{% for card in allCards[(allCards|length // 2):] %}
 				{% set cardId = card.id %}
 				{% set ownedCount = ownedCardsCount[cardId] ?? 0 %}
-				<div class="card-wrapper" style="{% if ownedCount == 0 %}opacity: 0.4;{% endif %}">
+				<div class="card-wrapper" data-name="{{ card.name|lower }}" style="{% if ownedCount == 0 %}opacity: 0.4;{% endif %}">
 					{% include 'components/card.html.twig' with { card: card } %}
 					{% if ownedCount > 1 %}
 						<div class="card-count">x{{ ownedCount }}</div>
@@ -54,24 +54,8 @@
 		</div>
 	</div>
 
-
-	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-const searchInput = document.getElementById('live-search');
-const cards = document.querySelectorAll('.card-wrapper');
-
-searchInput.addEventListener('input', function () {
-const query = this.value.toLowerCase();
-
-cards.forEach(function (card) {
-const name = card.getAttribute('data-name');
-if (name.includes(query)) {
-card.style.display = 'block';
-} else {
-card.style.display = 'none';
-}
-});
-});
-});
-	</script>
+	{% block javascripts %}
+		{{ parent() }}
+		<script src="{{ asset('js/collection.js') }}" defer></script>
+	{% endblock %}
 {% endblock %}

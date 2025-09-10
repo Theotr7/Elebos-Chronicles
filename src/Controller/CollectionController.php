@@ -18,53 +18,39 @@ class CollectionController extends AbstractController
     public function index(Request $request, CardRepository $cardRepository, UserCardRepository $userCardRepository): Response
     {
         $user = $this->getUser();
-        $allCards = $cardRepository->findAll();
 
-        $maxCardCost = 0;
-        foreach ($allCards as $card) {
-            $cost = $card->getCost();
-            if ($cost > $maxCardCost) {
-                $maxCardCost = $cost;
-            }
-        }
+        // 1. Récupère toutes les cartes déjà triées (par rareté et coût)
+        $allCards = $cardRepository->findAllOrderedByRarity();
 
+        // 2. Déterminer le coût max pour ajuster le filtre dynamique
+        $maxCardCost = max(array_map(fn($card) => $card->getCost(), $allCards));
+
+        // 3. Créer et gérer le formulaire de filtre
         $form = $this->createForm(CollectionFilterType::class, null, [
             'max_cost_limit' => $maxCardCost,
         ]);
         $form->handleRequest($request);
-        $filters = $form->getData();
+        $filters = $form->getData() ?? [];
 
         $selectedRarity = $filters['rarity'] ?? null;
         $cost = $filters['cost'] ?? null;
 
-        $filteredCards = [];
-        $rarityOrder = ['commune', 'rare', 'legendaire', 'mythique']; 
+        // 4. Appliquer les filtres côté PHP (tout en gardant l’ordre initial du repository)
+        $filteredCards = array_filter($allCards, function ($card) use ($selectedRarity, $cost) {
+            return (!$selectedRarity || $card->getRarity() === $selectedRarity)
+                && (!$cost || $card->getCost() === $cost);
+        });
 
-        foreach($rarityOrder as $rarity) {
-            foreach ($allCards as $card) {
-                if($card->getRarity() === $rarity) {
-                    if(
-                    ($selectedRarity === null || $card->getRarity() === $selectedRarity) &&
-                    ($cost === null || $card->getCost() === $cost)) {
-                        $filteredCards[] = $card;
-                    }
-                }
-            }
-        }
-
+        // 5. Compter les cartes possédées par l'utilisateur
         $userCards = $userCardRepository->findBy(['user' => $user]);
         $ownedCardsCount = [];
 
         foreach ($userCards as $userCard) {
             $cardId = $userCard->getCard()->getId();
-
-            if (!isset($ownedCardsCount[$cardId])) {
-                $ownedCardsCount[$cardId] = 0;
-            }
-            $ownedCardsCount[$cardId]++;
+            $ownedCardsCount[$cardId] = ($ownedCardsCount[$cardId] ?? 0) + 1;
         }
 
-        return $this->render('collection/index.html.twig', [
+        return $this->render('collection/collection.html.twig', [
             'allCards' => $filteredCards,
             'ownedCardsCount' => $ownedCardsCount,
             'filterForm' => $form->createView(),

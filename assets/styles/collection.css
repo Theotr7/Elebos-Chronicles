@@ -4,7 +4,6 @@ body {
     color: #2c1d0d;
 }
 
-/* === TITRE === */
 h1 {
     font-family: "Cinzel", serif;
     font-size: 3.5rem;
@@ -15,27 +14,26 @@ h1 {
     text-align: center;
 }
 
-/* === ZONE DE FILTRES === */
+/* Zone de filtres */
 .filters-container {
     background-color: #fdf6e3;
     border: 3px solid #a4712d;
-    border-bottom: none; /* ❌ Enlève la bordure du bas */
+    border-bottom: none;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     padding: 1rem 2rem;
     margin: 0px 2rem 0px 2rem;
-    max-width: 100%; /* ✅ s’étend à la même largeur que le cahier */
+    max-width: 100%;
 }
 
 .filters-container label {
-    margin-right: 1rem; /* espace entre le label et l'input/select */
+    margin-right: 1rem;
     color: #c2a35e;
     font-weight: bold;
 }
 
-/* === INPUTS, SELECTS === */
 .filters-container input,
 .filters-container select {
     font-family: "Cinzel", serif;
@@ -49,34 +47,6 @@ h1 {
     box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
 }
 
-/* === BOUTONS === */
-.filters-container button,
-.filters-container .btn-reset {
-    font-family: "Cinzel", serif;
-    padding: 8px 14px;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #644d3c;
-    color: #fffaf0;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-
-    /* ✅ Ajoute ceci : */
-    line-height: 1.2;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.filters-container button:hover,
-.filters-container .btn-reset:hover {
-    background-color: #4b392dff;
-}
-
-/* === DISPOSITION HORIZONTALE DES FILTRES === */
 #live-search {
     width: 100%;
     max-width: 300px;
@@ -98,18 +68,6 @@ h1 {
     flex-wrap: wrap;
 }
 
-/* === GRILLE DE COLLECTION === */
-.card-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    padding: 2rem;
-    max-width: 160rem;
-    margin: 0 auto;
-}
-
-/* === LAYOUT DE TYPE CAHIER === */
 .book-layout {
     display: flex;
     justify-content: center;
@@ -150,4 +108,29 @@ h1 {
     font-weight: bold;
     font-size: 14px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* === RESPONSIVE === */
+
+/* Quand écran < 1024px : 2 colonnes par page */
+@media (max-width: 1024px) {
+    .page {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Quand écran < 700px : 1 colonne + pages l'une sous l'autre */
+@media (max-width: 700px) {
+    .book-layout {
+        flex-direction: column;
+        align-items: center;
+        /* ⛔️ PAS de flex-wrap ici du tout */
+    }
+
+    .page {
+        grid-template-columns: 1fr;
+        transform: scale(1); /* on annule le scale */
+        width: 100%;
+        padding: 1rem;
+    }
 }

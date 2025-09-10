@@ -12,51 +12,53 @@
 			<link rel="stylesheet" href="{{ asset('styles/global.css') }}">
 			<link rel="stylesheet" href="{{ asset('styles/home.css') }}">
 			<link rel="stylesheet" href="{{ asset('styles/collection.css') }}">
+			<link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
 			<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 		{% endblock %}
 	</head>
 	<body>
 
 		<header class="site-header">
-			<div class="logo-container">
+			<div class="header-top">
 				<img src="{{ asset('images/logo-elebos.png') }}" alt="Elebos Chronicles Logo" class="site-logo"/>
+			</div>
+
+			<div class="header-center">
 				<div class="logo-text">
 					<h1 class="site-title">Elebos Chronicles</h1>
 					<p class="site-slogan">The Card Game</p>
 				</div>
+
+				<nav class="main-nav">
+					<a href="{{ path('home') }}">Accueil</a>
+
+					{% if app.user %}
+						{% if not is_granted('ROLE_ADMIN') %}
+							<a href="{{ path('booster_index') }}">Nos boosters</a>
+							<a href="{{ path('my_boosters') }}">Mes boosters</a>
+							<a href="{{ path('user_collection') }}">Ma collection</a>
+						{% endif %}
+
+						{% if is_granted('ROLE_ADMIN') %}
+							<a href="{{ path('admin_card_index') }}">
+								<img src="{{ asset('icons/admin/admin.png') }}" alt="Admin" style="height: 3rem; vertical-align: middle; margin-right: 4px;">
+								Admin Cartes
+							</a>
+							<a href="{{ path('admin_booster_index') }}">
+								<img src="{{ asset('icons/admin/admin.png') }}" alt="Admin" style="height: 3rem; vertical-align: middle; margin-right: 4px;">
+								Admin Boosters
+							</a>
+						{% endif %}
+
+						<a href="{{ path('app_logout') }}">Déconnexion</a>
+					{% else %}
+						<a href="{{ path('app_login') }}">Connexion</a>
+						<a href="{{ path('app_register') }}">Inscription</a>
+					{% endif %}
+				</nav>
 			</div>
-
-			<nav class="main-nav">
-				<a href="{{ path('home') }}">Accueil</a>
-
-				{% if app.user %}
-					{# Si l'utilisateur n'est PAS admin => affichage joueur uniquement #}
-					{% if not is_granted('ROLE_ADMIN') %}
-						<a href="{{ path('booster_index') }}">Nos boosters</a>
-						<a href="{{ path('my_boosters') }}">Mes boosters</a>
-						<a href="{{ path('user_collection') }}">Ma collection</a>
-					{% endif %}
-
-					{# Affichage des liens admin uniquement pour les admins #}
-					{% if is_granted('ROLE_ADMIN') %}
-						<a href="{{ path('admin_card_index') }}">
-							<img src="{{ asset('icons/admin/admin.png') }}" alt="Admin" style="height: 3rem; vertical-align: middle; margin-right: 4px;">
-							Admin Cartes
-						</a>
-						<a href="{{ path('admin_booster_index') }}">
-							<img src="{{ asset('icons/admin/admin.png') }}" alt="Admin" style="height: 3rem; vertical-align: middle; margin-right: 4px;">
-							Admin Boosters
-						</a>
-					{% endif %}
-
-					<a href="{{ path('app_logout') }}">Déconnexion</a>
-				{% else %}
-					<a href="{{ path('app_login') }}">Connexion</a>
-					<a href="{{ path('app_register') }}">Inscription</a>
-				{% endif %}
-			</nav>
-
 		</header>
+
 
 		<main>
 			{% block body %}{% endblock %}

@@ -25,13 +25,9 @@
                     } %}
 
 					<div style="text-align: center; margin-top: 0.5rem;">
-						{% if userBooster.isOpened %}
-							<p style="color: gray;">(ouvert)</p>
-						{% else %}
-							<button type="button" class="btn-primary open-booster-btn" data-id="{{ userBooster.id }}">
-								Ouvrir ce booster
-							</button>
-						{% endif %}
+						<button type="button" class="btn-primary open-booster-btn" data-id="{{ userBooster.id }}">
+							Ouvrir ce booster
+						</button>
 					</div>
 				</div>
 			{% endfor %}
@@ -86,6 +82,14 @@
 			text-align: center;
 			box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 		}
+
+		.card-grid {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 1.5rem;
+		}
+
 
 		.card-grid .card {
 			opacity: 0;

@@ -21,7 +21,7 @@ class UserCard
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'userCards')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(name: 'card_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private ?Card $card = null;
 
     public function getId(): ?int

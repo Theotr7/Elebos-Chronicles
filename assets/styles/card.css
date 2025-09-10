@@ -1,9 +1,9 @@
 .card {
-    width: 300px;
-    height: 540px;
-    border-radius: 12px;
+    width: 30rem;
+    height: 54rem;
+    border-radius: 1.2rem;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.3);
     font-family: "Arial", sans-serif;
     display: flex;
     flex-direction: column;
@@ -13,14 +13,13 @@
     border: 2px solid transparent;
 }
 
-/* === HEADER STATS (mana + hp) === */
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.4rem 0.6rem;
+    padding: 4px 6px;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 .card-header .stat {
@@ -30,51 +29,47 @@
 }
 
 .card-header img {
-    width: 18px;
-    height: 18px;
+    width: 1.8rem;
+    height: 1.8rem;
 }
 
-/* === IMAGE (sauf mythique) === */
 .card-image {
-    height: 180px;
-    min-height: 140px;
+    height: 18rem;
+    min-height: 14rem;
     flex-shrink: 0;
     background-size: cover;
     background-position: center;
 }
 
-/* === CONTENU TEXTE === */
 .card-content {
     flex: 1;
-    padding: 0.5rem 0.6rem;
+    padding: 5px 6px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 13px;
+    font-size: 1.3rem;
 }
 
-/* === TITRE === */
 .card-title {
     text-align: center;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: bold;
     padding: 4px 8px;
     border-radius: 6px;
     width: fit-content;
-    margin-top: 0.2rem;
-    margin-bottom: 0.8rem;
+    margin-top: 2px;
+    margin-bottom: 8px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* === ABILITIES === */
 .ability {
-    margin: 0.1rem 0;
+    margin: 1px 0;
 }
 
 .ability img {
-    width: 22px;
-    height: 22px;
+    width: 2.8rem;
+    height: 2.8rem;
     vertical-align: middle;
     margin-right: 5px;
 }
@@ -85,7 +80,7 @@
     border-radius: 4px;
     font-weight: bold;
     margin-bottom: 2px;
-    font-size: 13px;
+    font-size: 1.3rem;
 }
 
 .ability-desc {
@@ -93,38 +88,35 @@
     font-family: "Merriweather", serif;
     font-size: 1.3rem;
     font-weight: bold;
-    margin-top: 0.5rem;
+    margin-top: 5px;
 }
 
-/* === CITATION === */
 .quote {
     font-style: italic;
-    font-size: 12px;
+    font-size: 1.2rem;
     text-align: center;
     margin-top: auto;
 }
 
-/* === GEMME DE RARETÉ === */
 .rarity-gem {
     text-align: center;
     margin-top: 6px;
 }
 
 .rarity-gem img {
-    width: 25px;
-    height: 25px;
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
-/* === COMPTE DE COPIES === */
 .card-wrapper {
     position: relative;
-    width: 300px;
+    width: 30rem;
 }
 
 .card-count {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 1rem;
+    right: 1rem;
     background: green;
     color: white;
     padding: 2px 6px;
@@ -132,18 +124,9 @@
     font-weight: bold;
 }
 
-/* ======================= */
-/* === STYLES PAR RARETÉ === */
-/* ======================= */
-
-/* === Commune === */
 .card.commune {
     border-color: #aaa;
     background-color: #f3f3f3;
-}
-
-.card.commune .ability:first-of-type {
-    margin-bottom: rem; /* ajuste cette valeur pour l’alignement parfait */
 }
 
 .card.commune .card-header {
@@ -161,7 +144,6 @@
     color: black;
 }
 
-/* === Rare === */
 .card.rare {
     border-color: #3498db;
     background-color: #e4f1ff;
@@ -182,7 +164,6 @@
     color: white;
 }
 
-/* === Légendaire === */
 .card.legendaire {
     border-color: gold;
     background-color: #fff6db;
@@ -203,15 +184,13 @@
     color: black;
 }
 
-/* === NOUVELLE SECTION PIED DE CARTE (quote + gemme) === */
 .card-footer {
-    padding: 10px;
-    border-radius: 0 0 12px 12px;
-    margin: -6px -10px -10px -10px; /* compense le padding du .card-content */
+    padding: 1rem;
+    border-radius: 0 0 1.2rem 1.2rem;
+    margin: -0.6rem -1rem -1rem -1rem;
     text-align: center;
 }
 
-/* Par rareté */
 .card.commune .card-footer {
     background-color: #dcdcdc;
     color: black;
@@ -228,8 +207,8 @@
 }
 
 .card-footer .rarity-gem img {
-    width: 25px;
-    height: 25px;
+    width: 2.5rem;
+    height: 2.5rem;
     margin-top: 6px;
     margin-bottom: 4px;
 }
@@ -244,11 +223,20 @@
 }
 
 .card.mythique .card-title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 
 .card.mythique .ability {
     margin-bottom: -6rem;
+}
+
+.card.mythique .ability img {
+    width: 2.8rem;
+    height: 2.8rem;
+}
+
+.card.mythique .ability-name {
+    font-size: 1.5rem;
 }
 
 .card.mythique .card-title,

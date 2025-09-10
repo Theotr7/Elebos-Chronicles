@@ -51,7 +51,7 @@
 	</section>
 
 	<section class="mythic-section">
-		<h2 class="mythic-title">Les cartes mythiques du jour</h2>
+		<h2 class="mythic-title">Nos cartes les plus rares !</h2>
 		<p class="mythic-subtitle">Tentez votre chance et rejoignez la bataille !</p>
 
 		<div class="mythic-cards">
@@ -69,13 +69,13 @@
 
 {% block javascripts %}
 	<script>
-		let scrollIndex = 0;
+let scrollIndex = 0;
 const visibleItems = 3;
 
 function scrollCarousel(direction) {
 const track = document.getElementById('boosterCarousel');
 const items = track.querySelectorAll('.carousel-item');
-const itemWidth = items[0].offsetWidth + 32; // item width + gap
+const itemWidth = items[0].offsetWidth + 32;
 const maxIndex = items.length;
 
 scrollIndex += direction;

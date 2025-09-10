@@ -33,7 +33,7 @@ class Booster
     /**
      * @var Collection<int, UserBooster>
      */
-    #[ORM\OneToMany(targetEntity: UserBooster::class, mappedBy: 'booster')]
+    #[ORM\OneToMany(targetEntity: UserBooster::class, mappedBy: 'booster', orphanRemoval: true)]
     private Collection $userBoosters;
 
     public function __construct()

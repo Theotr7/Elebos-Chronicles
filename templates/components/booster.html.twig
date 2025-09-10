@@ -1,19 +1,22 @@
-<div class="booster" style="background-image: url('{{ asset(booster.backgroundUrl) }}');">
+<article class="booster" style="background-image: url('{{ asset(booster.backgroundUrl) }}');">
 	<div class="booster-fold top"></div>
-	<div class="booster-title">
+
+	<header class="booster-title">
 		<h1>{{ booster.titleTop }}</h1>
 		<h2>{{ booster.subtitleTop }}</h2>
-	</div>
+	</header>
 
-	<div class="booster-emblem">
+	<figure class="booster-symbol">
 		<img src="{{ asset(booster.symbolUrl) }}" alt="Symbole Booster"/>
-	</div>
+	</figure>
 
-	<div class="booster-subtitle">
+	<section class="booster-subtitle">
 		<h3>{{ booster.titleBottom|raw }}</h3>
 		<p>
 			<span class="booster-count">{{ booster.cardCount }}</span>
-			{{ booster.cardLabel }}</p>
-	</div>
+			{{ booster.cardLabel }}
+		</p>
+	</section>
+
 	<div class="booster-fold bottom"></div>
-</div>
+</article>

@@ -1,0 +1,167 @@
+/* Cartes */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+    justify-items: center;
+}
+
+.card-wrapper {
+    width: 100%;
+    max-width: 30rem;
+    position: relative;
+    background: none;
+    padding: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-actions {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 5rem;
+}
+
+.admin-icon-card {
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.admin-icon-card:hover {
+    transform: scale(1.2);
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.admin-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.admin-header h1 {
+    font-family: "Cinzel", serif;
+    font-size: 2rem;
+    color: #c2a35e;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.admin-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.admin-btn {
+    background-color: #644d3c;
+    color: #fffaf0;
+    padding: 10px 18px;
+    font-family: "Cinzel", serif;
+    font-weight: bold;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.admin-btn:hover {
+    background-color: #4b392dff;
+}
+
+/* Booster */
+.admin-booster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+    justify-content: center; 
+    justify-items: center;
+    padding: 2rem;
+}
+
+.booster-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+}
+
+.admin-actions {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 5rem;
+}
+
+.admin-icon-card {
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.admin-icon-card:hover {
+    transform: scale(1.2);
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.admin-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.admin-header h1 {
+    font-family: "Cinzel", serif;
+    font-size: 2rem;
+    color: #c2a35e;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.admin-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.admin-btn {
+    background-color: #644d3c;
+    color: #fffaf0;
+    padding: 10px 18px;
+    font-family: "Cinzel", serif;
+    font-weight: bold;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.admin-btn:hover {
+    background-color: #4b392dff;
+}

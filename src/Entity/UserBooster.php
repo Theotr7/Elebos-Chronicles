@@ -24,7 +24,7 @@ class UserBooster
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'userBoosters')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(name: 'booster_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private ?Booster $booster = null;
 
     public function getId(): ?int

@@ -1,8 +1,8 @@
 .booster {
     width: 100%;
-    max-width: 300px;
-    height: 500px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    max-width: 30rem;
+    height: 50rem;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.6);
     color: #e0c97f;
     font-family: "Cinzel", serif;
     display: flex;
@@ -21,54 +21,58 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 350px;
-    height: 25px;
+    width: 35rem;
+    height: 2.5rem;
     background: rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 -0.2rem 0.4rem rgba(0, 0, 0, 0.5);
     pointer-events: none;
 }
 
-/* Pli du bas */
 .booster-fold.bottom {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 350px;
-    height: 25px;
+    width: 35rem;
+    height: 2.5rem;
     background: rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0.2rem 0.4rem rgba(0, 0, 0, 0.5);
     pointer-events: none;
 }
 
+.booster-title {
+    margin-top: 1rem;
+}
+
 .booster-title h1 {
-    font-size: 20px;
+    font-size: 2rem;
     text-transform: uppercase;
-    margin: 8px;
-    letter-spacing: 1px;
+    margin: 0.8rem; 
+    letter-spacing: 0.1rem;
 }
 
 .booster-title h2 {
-    font-size: 14px;
-    margin: 4px 0 0 0;
+    font-size: 1.4rem; 
+    margin: 0.4rem 0 0 0;
     font-weight: 400;
 }
 
-.booster-emblem {
-    flex: 1;
+.booster-symbol {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
-.booster-emblem img {
+.booster-symbol img {
     max-width: 80%;
     height: auto;
-    filter: brightness(1.1);
+}
+
+.booster-subtitle {
+    margin-bottom: 1.5rem;
 }
 
 .booster-subtitle h3 {
-    font-size: 16px;
-    margin: 0;
+    font-size: 1.6rem; 
+    margin: 0.2rem 0;
     font-weight: 500;
     line-height: 1.4;
 }
@@ -79,7 +83,7 @@
 
 .booster-subtitle p {
     font-family: "Georgia", serif;
-    font-size: 12px;
+    font-size: 1.2rem; 
     color: #d6d0aa;
     margin-top: 0.4rem;
     font-style: italic;
@@ -87,13 +91,13 @@
 
 .booster-count {
     display: inline-block;
-    width: 22px;
-    height: 22px;
-    border: 1px solid #d6d0aa;
+    width: 2.2rem;
+    height: 2.2rem; 
+    border: 0.1rem solid #d6d0aa;
     border-radius: 50%;
-    line-height: 22px;
-    font-size: 12px;
-    margin-right: 6px;
+    line-height: 2.2rem;
+    font-size: 1.2rem;
+    margin-right: 0.6rem;
 }
 
 .booster-grid {

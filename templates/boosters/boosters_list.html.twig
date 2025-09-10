@@ -9,7 +9,6 @@
 	<div class="booster-grid">
 		{% for booster in boosters %}
 			<div class="booster-wrapper">
-				<a href="{{ path('booster_show', { id: booster.id }) }}" class="booster-link">
 					{% include 'components/booster.html.twig' with {
                         booster: {
                             backgroundUrl: booster.backgroundUrl,
